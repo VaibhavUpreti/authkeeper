@@ -8,9 +8,9 @@
 </p>
 
 
-# Doorkeeper.js — easy to use OAuth 2 JavaScript Client.
+# auth-keeper — easy to use OAuth 2 JavaScript Client.
 
-doorkeeper.js is a lightweight JavaScript library for implementing OAuth 2.0 clients in web, desktop, and mobile applications. 
+auth-keeper is a lightweight JavaScript library for implementing OAuth 2.0 clients in web, desktop, and mobile applications. 
 
 It supports the following [grant types](https://oauth.net/2/grant-types/) out of the box
 
@@ -38,7 +38,7 @@ Supported features:
 
 ## Usage
 
-`npm install doorkeeper`
+`npm install auth-keeper`
 
 
 
