@@ -1,12 +1,22 @@
 {
-  "name": "pistis",
+  "name": "auth-keeper",
   "version": "1.0.0",
   "description": "A lightweight javascript wrapper for OAuth 2.0 protocol",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production --config webpack.config.js"
   },
   "keywords": [],
   "author": "vaibhavupreti",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^9.2.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "qunit": "^2.23.1",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.1"
+  }
 }

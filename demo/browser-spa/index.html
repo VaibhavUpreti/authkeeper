@@ -1,0 +1,78 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test PKCE Library</title>
+</head>
+<body>
+  <h1>PKCE Library Test</h1>
+  <button id="test-btn">Test PKCE</button>
+
+  <script src="../../dist/pistis.js"></script>
+  <script src="./main.js" type="module"></script>
+
+  <!-- <script>
+    document.getElementById('test-btn').addEventListener('click', async function () {
+      // Define the configuration
+      const config = {
+        authorization_endpoint: 'https://example.com/authorize', // Replace with the actual authorization URL
+        token_endpoint: 'https://example.com/token',            // Replace with the actual token URL
+        client_id: 'your-client-id',                            // Replace with your actual client ID
+        requested_scopes: 'read write',                          // Specify the requested scopes
+        redirect_uri: 'http://localhost/callback'                // Replace with your actual redirect URI
+      };
+
+      try {
+        // Test the PKCE library by invoking the testLibrary method
+        console.log('Starting OAuth flow...');
+
+        const authUrl = await startAuthFlow(config);
+    console.log('Generated Auth URL:', authUrl);
+
+    // Redirect the user to the authorization URL (simulating the login flow)
+    window.location.href = authUrl;
+
+        // await pkce.testLibrary(config);
+      } catch (error) {
+        console.error('Error during PKCE flow test:', error);
+      }
+    });
+  </script> -->
+
+</body>
+</html>
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OAuth Login Test</title>
+  <style>
+    .container {
+      text-align: center;
+      margin-top: 50px;
+    }
+    #message {
+      color: green;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button id="login">Login with OAuth</button>
+
+    <p id="message">You have successfully logged in!</p>
+  </div>
+
+  <script src="../../dist/pistis.js" type="module"></script>
+  
+  <script src="./main.js" type="module"></script>
+</body>
+</html>
+ -->

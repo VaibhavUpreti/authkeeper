@@ -8,12 +8,39 @@
 </p>
 
 
-# Pistis
+# Doorkeeper.js — easy to use OAuth 2 JavaScript Client.
 
-Pistis is a lightweight JavaScript library for implementing OAuth 2.0 clients in web, desktop, and mobile applications. 
+doorkeeper.js is a lightweight JavaScript library for implementing OAuth 2.0 clients in web, desktop, and mobile applications. 
 
+It supports the following [grant types](https://oauth.net/2/grant-types/) out of the box
+
+- [Authorization code](https://oauth.net/2/grant-types/authorization-code/) - SSR apps
+- [PKCE](https://oauth.net/2/pkce/) - browser based, native apps, mobile apps
+- [refresh tokens](https://oauth.net/2/grant-types/refresh-token/)
+
+Supported features:
+
+- [The OAuth 2.0 Authorization Framework](https://datatracker.ietf.org/doc/html/rfc6749)
+  - [Authorization Code Flow](https://datatracker.ietf.org/doc/html/rfc6749#section-4.1)
+  - [Access Token Scopes](https://datatracker.ietf.org/doc/html/rfc6749#section-3.3)
+  - [Refresh token](https://datatracker.ietf.org/doc/html/rfc6749#section-1.5)
+  - [Implicit grant](https://datatracker.ietf.org/doc/html/rfc6749#section-4.2)
+  <!-- - [Resource Owner Password Credentials](https://datatracker.ietf.org/doc/html/rfc6749#section-4.3) -->
+  - [Client Credentials](https://datatracker.ietf.org/doc/html/rfc6749#section-4.4)
+<!-- - [OAuth 2.0 Token Revocation](https://datatracker.ietf.org/doc/html/rfc7009)
+- [OAuth 2.0 Token Introspection](https://datatracker.ietf.org/doc/html/rfc7662) -->
+<!-- - [OAuth 2.0 Threat Model and Security Considerations](https://datatracker.ietf.org/doc/html/rfc6819)
+- [OAuth 2.0 for Native Apps](https://datatracker.ietf.org/doc/html/rfc8252)
+- [Proof Key for Code Exchange by OAuth Public Clients](https://datatracker.ietf.org/doc/html/rfc7636) -->
 
 ## Installation
+
+
+## Usage
+
+`npm install doorkeeper`
+
+
 
 
 
