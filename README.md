@@ -70,6 +70,57 @@ const client = new OAuthClient({
 ```
 
 
+### Using with SSR applications
+
+Using auth-keeper with express, importing the required functions
+
+```javascript
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const { OAuthClient, startAuthFlow, handleCallback, refreshToken } = require('oauth2-client');
+
+```
+
+```javascript
+
+// Route to start the OAuth flow
+app.get('/authorize', (req, res) => {
+  const authUrl = startAuthFlow(client);
+  res.redirect(authUrl); // Redirect to OAuth provider's authorization URL
+});
+
+// Callback route to handle OAuth response and store tokens in cookies
+app.get('/callback', async (req, res) => {
+  const tokenResponse = await handleCallback(client, req.query);
+  res.cookie('access_token', tokenResponse.access_token, {
+    httpOnly: true,
+    secure: true, // Ensure secure flag in production
+  });
+  res.cookie('refresh_token', tokenResponse.refresh_token, {
+    httpOnly: true,
+    secure: true,
+  });
+  res.send('OAuth2 Flow completed successfully!');
+});
+
+// Example route that requires authentication
+app.get('/protected', (req, res) => {
+  const accessToken = req.cookies.access_token;
+  if (!accessToken) {
+    return res.status(401).send('Unauthorized');
+  }
+  // Use accessToken to call protected APIs or services
+  res.send('Protected Content');
+});
+
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
+});
+
+```
+
+
+
 ## Grant types
 
 For more information look [GRANTS.md](./GRANTS.md)
