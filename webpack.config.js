@@ -1,6 +1,9 @@
-const path = require('path')
+import path from 'path';
 
-module.exports = {
+// Derive __dirname using import.meta.url
+const __dirname = new URL('.', import.meta.url).pathname;
+
+export default {
   entry: './lib/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -27,7 +30,6 @@ module.exports = {
           }
         }
       }
-
     ]
   }
-}
+};
