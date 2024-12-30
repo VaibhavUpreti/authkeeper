@@ -47,27 +47,43 @@
 
 
 <!-- Change this to cdn url v1 stable -->
-<script src="https://www.unpkg.com/authkeeper@1.2.0/dist/authkeeper.js" type="module"></script>
+<script src="../../dist/authkeeper.js" type="module"></script>
 
 <script type="module">
     const config = {
         client_id: 'PkaNwoOTJGY2rAtNaLr7iR7BznU7wM5o',
         redirect_uri: 'http://localhost:5500/demo/browser-spa/home.html',
         authorization_url: 'https://dev-k6ckdaso3ygmzm7u.us.auth0.com/authorize',
-        token_url: 'https://dev-k6ckdaso3ygmzm7u.us.auth0.com/token',
+        token_url: 'https://dev-k6ckdaso3ygmzm7u.us.auth0.com/oauth/token',
         scope: 'openid profile',
     };
+   
     var oauthClient = new authkeeper.OAuthClient(config);
 
-        // To start the auth flow
-        document.getElementById("start").addEventListener("click", function() {
-            oauthClient.startAuthFlow();
-        });
+    // To start the auth flow
+    document.getElementById("start").addEventListener("click", function() {
+        oauthClient.startAuthFlow();
+    });
 
-        // After the user is redirected back, call handleCallback
-        window.onload = function() {
-            oauthClient.handleCallback();
-        };
+    // After the user is redirected back, call handleCallback
+     window.onload = function() {
+        oauthClient.handleCallback();
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get("code"); // Retrieve the authorization code from URL params
+        if (code) {
+            oauthClient.exchangeAuthCodeForToken(code); // Automatically pass the code to exchange
+        }
+    };
+
+    // if (window.location.search.includes("code")) {
+    //     console.log("running token auth");
+    //     const urlParams = new URLSearchParams(window.location.search);
+    //     const code = urlParams.get("code"); // Retrieve the authorization code from URL params
+    //     if (code) {
+    //         oauthClient.exchangeAuthCodeForToken(code); // Automatically pass the code to exchange
+    //     }
+    // }
 </script>
 
 </body>
