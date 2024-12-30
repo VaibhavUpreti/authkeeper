@@ -32,6 +32,7 @@ function App() {
     const token = await oauthClient.exchangeAuthCodeForToken(code);
     if (token) {
       setAuthToken(token);
+      window.location.reload();
     }
   };
 
@@ -50,37 +51,92 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={initiateAuthFlow}>
+    <div style={{ fontFamily: "Arial, sans-serif", textAlign: "center", padding: "20px" }}>
+      <h1 style={{ color: "", marginBottom: "30px" }}>AuthKeeper SPA Demo</h1>
+      <div className="card" style={{
+   
+      }}>
+        <button
+          onClick={initiateAuthFlow}
+          style={{
+          }}
+        >
           Login with OAuth
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
+        <p style={{ marginTop: "15px", fontSize: "14px", color: "#7f8c8d" }}>
+          Click the button to authenticate with OAuth
         </p>
       </div>
-
       {userInfo && (
-        <div id="user-info">
-          <h2>User Information</h2>
-          <pre>{JSON.stringify(userInfo, null, 2)}</pre>
-        </div>
-      )}
+  
+  <div id="user-info" style={{
+    margin: "20px auto",
+    padding: "20px",
+    maxWidth: "600px",
+    background: "#f9f9f9",
+    borderRadius: "8px",
+    textAlign: "left",
+    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)"
+  }}>
+    {/* Green check mark and success message */}
+    <div style={{
+      display: "flex",
+      alignItems: "center",
+      marginBottom: "15px",
+    }}>
+      <span style={{
+        display: "inline-block",
+        width: "24px",
+        height: "24px",
+        backgroundColor: "#28a745",
+        color: "#fff",
+        borderRadius: "50%",
+        textAlign: "center",
+        lineHeight: "24px",
+        fontSize: "16px",
+        marginRight: "10px",
+      }}>
+        ✓
+      </span>
+      <h2 style={{
+        margin: 0,
+        color: "#28a745",
+        fontSize: "18px",
+        fontWeight: "bold",
+      }}>
+        User Successfully Authorized
+      </h2>
+    </div>
 
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
+    {/* User information */}
+    <h3 style={{ color: "#000000", marginBottom: "10px" }}>User Information</h3>
+    <pre style={{
+      background: "#000000",
+      color: "#ffffff",
+      padding: "15px",
+      borderRadius: "5px",
+      overflow: "auto",
+      fontSize: "14px",
+      fontFamily: "Courier New, Courier, monospace",
+    }}>
+      {JSON.stringify(userInfo, null, 2)}
+    </pre>
+  </div>
+)}
+
+      <p className="read-the-docs" style={{ marginTop: "20px", fontSize: "14px", color: "#7f8c8d" }}>
+        <span>AuthKeeper</span> |{" "}
+        <a
+          href="https://github.com/VaibhavUpreti/authkeeper"
+          target="_blank"
+          style={{ textDecoration: "none", color: "#3498db", fontWeight: "bold" }}
+        >
+          <span role="img" aria-label="GitHub">🌟 GitHub</span> Repository
+        </a>
       </p>
     </div>
   );
 }
+
 
 export default App;
