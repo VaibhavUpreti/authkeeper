@@ -6,13 +6,13 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node --trace-warnings index.mjs"
+    "dev": "nodemon --trace-warnings index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "authkeeper": "^1.2.1",
+    "authkeeper": "^1.2.2",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "mjs": "^1.0.0",
