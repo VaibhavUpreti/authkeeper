@@ -46,7 +46,7 @@
 </div>
 
 
-<!-- Change this to cdn url v1 stable -->
+<!-- Change this to cdn url v2 stable -->
 <script src="../../dist/authkeeper.js" type="module"></script>
 
 <script type="module">
@@ -60,20 +60,16 @@
    
     var oauthClient = new authkeeper.OAuthClient(config);
 
-    // To start the auth flow
     document.getElementById("start").addEventListener("click", function() {
         oauthClient.startAuthFlow();
     });
 
-    // After the user is redirected back, call handleCallback
      window.onload = function() {
         oauthClient.handleCallback();
 
         const urlParams = new URLSearchParams(window.location.search);
-        const code = urlParams.get("code"); // Retrieve the authorization code from URL params
-        if (code) {
-            oauthClient.exchangeAuthCodeForToken(code); // Automatically pass the code to exchange
-        }
+        const code = urlParams.get("code");
+           oauthClient.exchangeAuthCodeForToken(code);
     };
 
     // if (window.location.search.includes("code")) {
