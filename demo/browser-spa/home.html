@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Storage Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        button {
+            margin: 5px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        pre {
+            background-color: #f4f4f4;
+            border: 1px solid #ccc;
+            padding: 10px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Storage Viewer</h1>
+    <button id="showCookies">Show Cookies</button>
+    <button id="showSessionStorage">Show Session Storage</button>
+    <button id="showLocalStorage">Show Local Storage</button>
+    <pre id="output">Click a button to view storage data...</pre>
+
+    <script>
+        function showCookies() {
+            const cookies = document.cookie;
+            if (cookies) {
+                return cookies.split("; ").map(cookie => {
+                    const [key, value] = cookie.split("=");
+                    return `${key}: ${decodeURIComponent(value)}`;
+                }).join("\n");
+            }
+            return "No cookies found.";
+        }
+
+        function showSessionStorage() {
+            if (sessionStorage.length > 0) {
+                return Object.entries(sessionStorage).map(([key, value]) => `${key}: ${value}`).join("\n");
+            }
+            return "No session storage data found.";
+        }
+
+        function showLocalStorage() {
+            if (localStorage.length > 0) {
+                return Object.entries(localStorage).map(([key, value]) => `${key}: ${value}`).join("\n");
+            }
+            return "No local storage data found.";
+        }
+
+        document.getElementById("showCookies").addEventListener("click", () => {
+            document.getElementById("output").textContent = showCookies();
+        });
+
+        document.getElementById("showSessionStorage").addEventListener("click", () => {
+            document.getElementById("output").textContent = showSessionStorage();
+        });
+
+        document.getElementById("showLocalStorage").addEventListener("click", () => {
+            document.getElementById("output").textContent = showLocalStorage();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+// src/client.js
+class OAuthClient {
+    constructor({ clientId, clientSecret, redirectUri, authUrl, tokenUrl, grantType }) {
+        this.clientId = clientId;
+        this.clientSecret = clientSecret;
+        this.redirectUri = redirectUri;
+        this.authUrl = authUrl;
+        this.tokenUrl = tokenUrl;
+        this.grantType = grantType;
+    }
+
+    async startAuthFlow() {
+        if (this.grantType === 'authorization_code' || this.grantType === 'pkce') {
+            const url = `${this.authUrl}?response_type=code&client_id=${encodeURIComponent(this.clientId)}&redirect_uri=${encodeURIComponent(this.redirectUri)}`;
+            return this.grantType === 'pkce'
+                ? this._addPKCEParams(url)
+                : url;
+        } else {
+            throw new Error(`Unsupported grant type: ${this.grantType}`);
+        }
+    }
+
+    async handleCallback(callbackParams) {
+        if (!callbackParams.code) throw new Error('Authorization code missing');
+        const params = {
+            client_id: this.clientId,
+            redirect_uri: this.redirectUri,
+            grant_type: this.grantType === 'pkce' ? 'authorization_code' : this.grantType,
+            code: callbackParams.code,
+            ...(this.clientSecret && { client_secret: this.clientSecret }),
+        };
+        return this._makeTokenRequest(params);
+    }
+
+    async refreshToken(refreshToken) {
+        const params = {
+            client_id: this.clientId,
+            grant_type: 'refresh_token',
+            refresh_token: refreshToken,
+            ...(this.clientSecret && { client_secret: this.clientSecret }),
+        };
+        return this._makeTokenRequest(params);
+    }
+
+    async _makeTokenRequest(params) {
+        const response = await fetch(this.tokenUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(params).toString(),
+        });
+        if (!response.ok) throw new Error('Failed to fetch tokens');
+        return response.json();
+    }
+
+    _addPKCEParams(url) {
+        const { codeChallenge, verifier } = PKCE.generateCodeChallenge();
+        PKCE.storeVerifier(verifier);
+        return `${url}&code_challenge=${encodeURIComponent(codeChallenge)}&code_challenge_method=S256`;
+    }
+}
+
+export default OAuthClient;

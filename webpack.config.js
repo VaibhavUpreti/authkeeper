@@ -4,8 +4,8 @@ module.exports = {
   entry: './lib/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'auth-keeper.js',
-    library: 'auth-keeper',
+    filename: 'authkeeper.js',
+    library: 'authkeeper',
     libraryTarget: 'umd'
   },
   devtool: "source-map",
