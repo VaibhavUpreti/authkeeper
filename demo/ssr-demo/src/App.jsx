@@ -7,7 +7,10 @@ import { OAuthClient } from "authkeeper";  // Import OAuthClient class
 // Define the OAuth configuration
 const config = {
   client_id: "PkaNwoOTJGY2rAtNaLr7iR7BznU7wM5o",
-  redirect_uri: "http://localhost:5500", // Update this to your app's URL
+  // Development
+  // redirect_uri: "http://localhost:5500", // Update this to your app's URL
+  // Production
+  redirect_uri: "https://authkeeper-spa.vercel.app/",
   authorization_url: "https://dev-k6ckdaso3ygmzm7u.us.auth0.com/authorize",
   token_url: "https://dev-k6ckdaso3ygmzm7u.us.auth0.com/oauth/token",
   scope: "openid profile email",
