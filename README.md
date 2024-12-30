@@ -37,7 +37,7 @@ Supported features:
 - [OAuth 2.0 for Native Apps](https://datatracker.ietf.org/doc/html/rfc8252)
 - [Proof Key for Code Exchange by OAuth Public Clients](https://datatracker.ietf.org/doc/html/rfc7636) -->
 
-## Installation
+## Usage
 
 ```bash 
 npm install authkeeper
@@ -46,11 +46,32 @@ npm install authkeeper
 From CDN
 
 ```html
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/authkeeper@latest/dist/authkeeper.js"></script>
+<script type="text/javascript" src="https://www.unpkg.com/authkeeper@1.2.0/dist/authkeeper.js"></script>
+```
+```html
+<script type="module">
+    const config = {
+        client_id: 'clientid',
+        redirect_uri: 'http://localhost:5500/home',
+        authorization_url: 'https://api.oauth.com/authorize',
+        token_url: 'https://api.oauth.com/token',
+        scope: 'openid profile',
+    };
+
+    var oauthClient = new authkeeper.OAuthClient(config);
+    // To start the auth flow
+    document.getElementById("start").addEventListener("click", function() {
+      oauthClient.startAuthFlow();
+    });
+    // After the user is redirected back, call handleCallback
+    window.onload = function() {
+        oauthClient.handleCallback();
+    };
+</script>
+
 ```
 
 
-## Usage
 
 ```javascript
 import { OAuthClient, startAuthFlow, handleCallback, refreshToken } from 'authkeeper';
