@@ -8,13 +8,13 @@
 </p>
 
 
-# auth-keeper — easy to use OAuth 2 JavaScript Client.
+# authkeeper — easy to use OAuth 2 JavaScript Client.
 
-[![npm version](https://badge.fury.io/js/auth-keeper.svg)](https://badge.fury.io/js/auth-keeper)
-[![CI](https://github.com/VaibhavUpreti/auth-keeper/blob/main/.github/workflows/nodejs.yml/badge.svg)](https://github.com/VaibhavUpreti/auth-keeper/blob/main/.github/workflows/nodejs.yml/badge.svg)
+[![npm version](https://badge.fury.io/js/authkeeper.svg)](https://badge.fury.io/js/authkeeper)
+[![CI](https://github.com/VaibhavUpreti/authkeeper/blob/main/.github/workflows/nodejs.yml/badge.svg)](https://github.com/VaibhavUpreti/authkeeper/blob/main/.github/workflows/nodejs.yml/badge.svg)
 [![Dependabot](https://img.shields.io/badge/dependabot-enabled-success.svg)](https://dependabot.com)
 
-auth-keeper is a lightweight JavaScript library for implementing OAuth 2.0 clients in web, desktop, and mobile applications. 
+authkeeper is a lightweight JavaScript library for implementing OAuth 2.0 clients in web, desktop, and mobile applications. 
 
 It supports the following [grant types](https://oauth.net/2/grant-types/) out of the box
 
@@ -40,20 +40,20 @@ Supported features:
 ## Installation
 
 ```bash 
-npm install auth-keeper
+npm install authkeeper
 ```
 
 From CDN
 
 ```html
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/auth-keeper@latest/dist/auth-keeper.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/authkeeper@latest/dist/authkeeper.js"></script>
 ```
 
 
 ## Usage
 
 ```javascript
-import { OAuthClient, startAuthFlow, handleCallback, refreshToken } from 'auth-keeper';
+import { OAuthClient, startAuthFlow, handleCallback, refreshToken } from 'authkeeper';
 ```
 
 Choose appropriate client configuration
@@ -72,12 +72,12 @@ const client = new OAuthClient({
 
 ### Using with SSR applications
 
-Using auth-keeper with express, importing the required functions
+Using authkeeper with express, importing the required functions
 
 ```javascript
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const { OAuthClient, startAuthFlow, handleCallback, refreshToken } = require('oauth2-client');
+const { OAuthClient, startAuthFlow, handleCallback, refreshToken } = require('authkeeper');
 
 ```
 
