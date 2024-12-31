@@ -1,6 +1,6 @@
 {
   "name": "authkeeper",
-  "version": "1.2.5",
+  "version": "1.2.5.1",
   "description": "A lightweight javascript wrapper for OAuth 2.0 protocol",
   "main": "lib/index.js",
   "type": "module",
@@ -13,7 +13,7 @@
   "author": "vaibhavupreti",
   "license": "MIT",
   "devDependencies": {
-    "babel-core": "^4.7.16",
+    "babel-core": "^6.26.3",
     "babel-loader": "^9.2.1",
     "babel-preset-env": "^0.0.0",
     "babel-preset-react": "^6.24.1",
