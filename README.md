@@ -14,7 +14,7 @@
 [![CI](https://github.com/VaibhavUpreti/authkeeper/actions/workflows/nodejs.yml/badge.svg)](https://github.com/VaibhavUpreti/authkeeper/actions/workflows/nodejs.yml)
 [![Dependabot](https://img.shields.io/badge/dependabot-enabled-success.svg)](https://dependabot.com)
 
-authkeeper is a lightweight JavaScript ES6 module for implementing OAuth 2.0 clients in web, desktop, and mobile applications. 
+authkeeper is a lightweight JavaScript ES6 module(51.7 kB) for implementing OAuth 2.0 clients in web, desktop, and mobile applications. 
 
 Supported features:
 
@@ -145,21 +145,18 @@ const userData = await oauthClient.getUserInfo(accessToken);
 ```
 
 
-
 ## Grant types
 
 For more information look [GRANTS.md](./GRANTS.md)
-
 
 ## Example Applications
 
 These applications show how authkeeper works and how to integrate with it. Start with the oAuth2 server and use the clients to connect with the server.
 
 
-1. [Native Mobile Apps/ browser based spa](./demo/browser-spa/README.md)
-2. [React SPA](./demo/react-spa-demo/README.md)
-3. [SSR application](./demo/ssr-express-demo/README.md)
-
+1. [SSR application](./demo/ssr-express-demo/README.md)
+2. [React SPA](./demo/react-spa-demo/README.md) https://authkeeper-spa.vaibhavupreti.me/ 
+3. [Native Mobile Apps/ browser based spa](./demo/browser-spa/README.md)
 
 ## License
 
