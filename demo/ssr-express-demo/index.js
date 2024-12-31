@@ -218,18 +218,25 @@ app.get('/refresh-token', async (req, res) => {
   }
 });
 
-
 app.get("/user", async (req, res) => {
   try {
-    const cookies = req.cookies;
+    const accessToken = req.cookies.access_token;
+
+    if (!accessToken) {
+      return res.status(401).json({ message: "Access token not found. Please authenticate again." });
+    }
+
+    // Fetch user information using the access token
+    const userData = await oauthClient.getUserInfo(accessToken);
+
     res.status(200).json({
-      message: "Cookies successfully retrieved",
-      cookies: cookies,
+      message: "User information retrieved successfully.",
+      user: userData, // Assuming `getUserInfo` already returns a parsed object
     });
   } catch (error) {
-    console.error("Error fetching cookies:", error);
+    console.error("Error fetching user information:", error);
     res.status(500).json({
-      message: "An error occurred while retrieving cookies",
+      message: "An error occurred while retrieving user information.",
       error: error.message,
     });
   }
