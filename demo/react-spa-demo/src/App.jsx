@@ -13,13 +13,14 @@ const config = {
   redirect_uri: "https://authkeeper-spa.vercel.app/",
   authorization_url: "https://dev-k6ckdaso3ygmzm7u.us.auth0.com/authorize",
   token_url: "https://dev-k6ckdaso3ygmzm7u.us.auth0.com/oauth/token",
-  scope: "openid profile email",
+  scope: "openid profile email offline_access",
 };
 
 function App() {
   const [count, setCount] = useState(0);
   const [userInfo, setUserInfo] = useState(null);
   const [authToken, setAuthToken] = useState(null);
+  const [refreshMessage, setRefreshMessage] = useState(""); // State to show refresh token message
 
   const oauthClient = new OAuthClient(config);
 
@@ -33,6 +34,21 @@ function App() {
     if (token) {
       setAuthToken(token);
       window.location.reload();
+    }
+  };
+
+  const handleRefreshToken = async () => {
+    try {
+      const refreshedToken = await oauthClient.refreshAccessToken();
+      if (refreshedToken) {
+        setAuthToken(refreshedToken);
+        setRefreshMessage("Token successfully refreshed!");
+      } else {
+        setRefreshMessage("Failed to refresh token.");
+      }
+    } catch (error) {
+      setRefreshMessage("An error occurred while refreshing the token.");
+      console.error(error);
     }
   };
 
@@ -53,76 +69,100 @@ function App() {
   return (
     <div style={{ fontFamily: "Arial, sans-serif", textAlign: "center", padding: "20px" }}>
       <h1 style={{ color: "", marginBottom: "30px" }}>AuthKeeper SPA Demo</h1>
-      <div className="card" style={{
-   
-      }}>
-        <button
-          onClick={initiateAuthFlow}
-          style={{
-          }}
-        >
+      <div className="card" style={{}}>
+        <button onClick={initiateAuthFlow} style={{}}>
           Login with OAuth
         </button>
         <p style={{ marginTop: "15px", fontSize: "14px", color: "#7f8c8d" }}>
           Click the button to authenticate with OAuth
         </p>
       </div>
-      {userInfo && (
-  
-  <div id="user-info" style={{
-    margin: "20px auto",
-    padding: "20px",
-    maxWidth: "600px",
-    background: "#f9f9f9",
-    borderRadius: "8px",
-    textAlign: "left",
-    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)"
-  }}>
-    {/* Green check mark and success message */}
-    <div style={{
-      display: "flex",
-      alignItems: "center",
-      marginBottom: "15px",
-    }}>
-      <span style={{
-        display: "inline-block",
-        width: "24px",
-        height: "24px",
-        backgroundColor: "#28a745",
-        color: "#fff",
-        borderRadius: "50%",
-        textAlign: "center",
-        lineHeight: "24px",
-        fontSize: "16px",
-        marginRight: "10px",
-      }}>
-        ✓
-      </span>
-      <h2 style={{
-        margin: 0,
-        color: "#28a745",
-        fontSize: "18px",
-        fontWeight: "bold",
-      }}>
-        User Successfully Authorized
-      </h2>
-    </div>
 
-    {/* User information */}
-    <h3 style={{ color: "#000000", marginBottom: "10px" }}>User Information</h3>
-    <pre style={{
-      background: "#000000",
-      color: "#ffffff",
-      padding: "15px",
-      borderRadius: "5px",
-      overflow: "auto",
-      fontSize: "14px",
-      fontFamily: "Courier New, Courier, monospace",
-    }}>
-      {JSON.stringify(userInfo, null, 2)}
-    </pre>
-  </div>
-)}
+      {userInfo && (
+        <div id="user-info" style={{
+          margin: "20px auto",
+          padding: "20px",
+          maxWidth: "600px",
+          background: "#f9f9f9",
+          borderRadius: "8px",
+          textAlign: "left",
+          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)"
+        }}>
+          {/* Green check mark and success message */}
+          <div style={{
+            display: "flex",
+            alignItems: "center",
+            marginBottom: "15px",
+          }}>
+            <span style={{
+              display: "inline-block",
+              width: "24px",
+              height: "24px",
+              backgroundColor: "#28a745",
+              color: "#fff",
+              borderRadius: "50%",
+              textAlign: "center",
+              lineHeight: "24px",
+              fontSize: "16px",
+              marginRight: "10px",
+            }}>
+              ✓
+            </span>
+            <h2 style={{
+              margin: 0,
+              color: "#28a745",
+              fontSize: "18px",
+              fontWeight: "bold",
+            }}>
+              User Successfully Authorized
+            </h2>
+          </div>
+
+          {/* User information */}
+          <h3 style={{ color: "#000000", marginBottom: "10px" }}>User Information</h3>
+          <pre style={{
+            background: "#000000",
+            color: "#ffffff",
+            padding: "15px",
+            borderRadius: "5px",
+            overflow: "auto",
+            fontSize: "14px",
+            fontFamily: "Courier New, Courier, monospace",
+          }}>
+            {JSON.stringify(userInfo, null, 2)}
+          </pre>
+        </div>
+      )}
+
+      {/* Refresh Token Button */}
+      <div style={{ marginTop: "30px" }}>
+        <button
+          onClick={handleRefreshToken}
+          style={{
+            padding: "10px 20px",
+            backgroundColor: "#3498db",
+            color: "#fff",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+          }}
+        >
+          Refresh Token
+        </button>
+
+        {/* Display success or failure message */}
+        {refreshMessage && (
+          <p
+            style={{
+              marginTop: "15px",
+              fontSize: "14px",
+              color: refreshMessage.includes("successfully") ? "#28a745" : "#e74c3c",
+            }}
+          >
+            {refreshMessage}
+          </p>
+        )}
+      </div>
 
       <p className="read-the-docs" style={{ marginTop: "20px", fontSize: "14px", color: "#7f8c8d" }}>
         <span>AuthKeeper</span> |{" "}
@@ -137,6 +177,5 @@ function App() {
     </div>
   );
 }
-
 
 export default App;
