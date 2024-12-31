@@ -21,6 +21,7 @@ function App() {
   const [userInfo, setUserInfo] = useState(null);
   const [authToken, setAuthToken] = useState(null);
   const [refreshMessage, setRefreshMessage] = useState(""); // State to show refresh token message
+  const [expiresIn, setExpiresIn] = useState(null); // State to display the expires_in time
 
   const oauthClient = new OAuthClient(config);
 
@@ -43,6 +44,14 @@ function App() {
       if (refreshedToken) {
         setAuthToken(refreshedToken);
         setRefreshMessage("Token successfully refreshed!");
+
+        // Save the new token and its expiration time in localStorage
+        const expirationTime = new Date().getTime() + refreshedToken.expires_in * 1000; // Convert seconds to milliseconds
+        localStorage.setItem("authToken", JSON.stringify(refreshedToken));
+        localStorage.setItem("tokenExpiration", expirationTime.toString());
+
+        // Update the expiresIn state
+        setExpiresIn(refreshedToken.expires_in);
       } else {
         setRefreshMessage("Failed to refresh token.");
       }
@@ -56,6 +65,22 @@ function App() {
     const storedUser = localStorage.getItem("current_user");
     if (storedUser) {
       setUserInfo(JSON.parse(storedUser));
+    }
+
+    // Check for the stored token and its expiration time
+    const storedToken = localStorage.getItem("authToken");
+    const storedExpiration = localStorage.getItem("tokenExpiration");
+
+    if (storedToken && storedExpiration) {
+      const currentTime = new Date().getTime();
+      if (currentTime < storedExpiration) {
+        setAuthToken(JSON.parse(storedToken));
+        setExpiresIn((storedExpiration - currentTime) / 1000); // Convert ms to seconds
+      } else {
+        // Token expired, clear from localStorage
+        localStorage.removeItem("authToken");
+        localStorage.removeItem("tokenExpiration");
+      }
     }
 
     // Handle the OAuth callback after redirect with code in URL
@@ -160,6 +185,13 @@ function App() {
             }}
           >
             {refreshMessage}
+          </p>
+        )}
+
+        {/* Display expires in time */}
+        {expiresIn && (
+          <p style={{ marginTop: "15px", fontSize: "14px", color: "#7f8c8d" }}>
+            Token expires in {expiresIn} seconds.
           </p>
         )}
       </div>
