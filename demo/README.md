@@ -16,7 +16,7 @@ https://github.com/user-attachments/assets/1d98e4a7-930f-42ef-a6cd-7e20c6f15039
 
 **Try here:**
 
-https://authkeeper-spa.vaibhavupreti.me/
+https://authkeeper-spa.vercel.app/
 
 [refer](./ssr-demo)
 

@@ -33,7 +33,6 @@ Supported features:
 <!-- - [OAuth 2.0 Token Revocation](https://datatracker.ietf.org/doc/html/rfc7009)
 - [OAuth 2.0 Token Introspection](https://datatracker.ietf.org/doc/html/rfc7662) -->
 <!-- - [OAuth 2.0 Threat Model and Security Considerations](https://datatracker.ietf.org/doc/html/rfc6819)
-
  -->
 
 ## Usage
@@ -45,7 +44,7 @@ npm install authkeeper
 ### From CDN
 
 ```html
-<script type="text/javascript" src="https://www.unpkg.com/authkeeper@1.2.0/dist/authkeeper.js"></script>
+<script type="text/javascript" src="https://www.unpkg.com/authkeeper@1.2.7/dist/authkeeper.js"></script>
 ```
 
 ```html
@@ -160,7 +159,7 @@ These applications show how authkeeper works and how to integrate with it. Start
 
 
 1. [SSR application](./demo/ssr-express-demo/README.md)
-2. [React SPA](./demo/react-spa-demo/README.md) -  https://authkeeper-spa.vaibhavupreti.me/ 
+2. [React SPA](./demo/react-spa-demo/README.md) -  https://authkeeper-spa.vercel.app/
 3. [Native Mobile Apps/ browser based spa](./demo/browser-spa/README.md)
 
 ## License
