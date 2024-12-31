@@ -14,13 +14,7 @@
 [![CI](https://github.com/VaibhavUpreti/authkeeper/actions/workflows/nodejs.yml/badge.svg)](https://github.com/VaibhavUpreti/authkeeper/actions/workflows/nodejs.yml)
 [![Dependabot](https://img.shields.io/badge/dependabot-enabled-success.svg)](https://dependabot.com)
 
-authkeeper is a lightweight JavaScript ES module for implementing OAuth 2.0 clients in web, desktop, and mobile applications. 
-
-It supports the following [grant types](https://oauth.net/2/grant-types/) out of the box
-
-- [Authorization code](https://oauth.net/2/grant-types/authorization-code/) - SSR apps
-- [PKCE](https://oauth.net/2/pkce/) - browser based, mobile apps
-- [refresh tokens](https://oauth.net/2/grant-types/refresh-token/)
+authkeeper is a lightweight JavaScript ES6 module for implementing OAuth 2.0 clients in web, desktop, and mobile applications. 
 
 Supported features:
 
@@ -30,7 +24,7 @@ Supported features:
   - [Refresh token](https://datatracker.ietf.org/doc/html/rfc6749#section-1.5)
   <!-- - [Implicit grant](https://datatracker.ietf.org/doc/html/rfc6749#section-4.2)
   <!-- - [Resource Owner Password Credentials](https://datatracker.ietf.org/doc/html/rfc6749#section-4.3) -->
-  <!-- - [Client Credentials](https://datatracker.ietf.org/doc/html/rfc6749#section-4.4) --> -->
+  <!-- - [Client Credentials](https://datatracker.ietf.org/doc/html/rfc6749#section-4.4) -->
 <!-- - [OAuth 2.0 Token Revocation](https://datatracker.ietf.org/doc/html/rfc7009)
 - [OAuth 2.0 Token Introspection](https://datatracker.ietf.org/doc/html/rfc7662) -->
 <!-- - [OAuth 2.0 Threat Model and Security Considerations](https://datatracker.ietf.org/doc/html/rfc6819)
@@ -43,11 +37,12 @@ Supported features:
 npm install authkeeper
 ```
 
-From CDN
+### From CDN
 
 ```html
 <script type="text/javascript" src="https://www.unpkg.com/authkeeper@1.2.0/dist/authkeeper.js"></script>
 ```
+
 ```html
 <script type="module">
     const config = {
@@ -81,6 +76,7 @@ Import `authkeeper` and set up your OAuth configuration:
 import * as authkeeper from 'authkeeper';
 const { OAuthClient } = authkeeper;
 
+// Use any OAuth Provider of your choice
 const oauthConfig = {
   client_id: process.env.CLIENT_ID,
   client_secret: process.env.CLIENT_SECRET_KEY,
@@ -150,20 +146,21 @@ const userData = await oauthClient.getUserInfo(accessToken);
 
 
 
-
 ## Grant types
 
 For more information look [GRANTS.md](./GRANTS.md)
 
 
-
-
 ## Example Applications
 
-These applications show how pistis works and how to integrate with it. Start with the oAuth2 server and use the clients to connect with the server.
+These applications show how authkeeper works and how to integrate with it. Start with the oAuth2 server and use the clients to connect with the server.
+
+
+1. [Native Mobile Apps/ browser based spa](./demo/browser-spa/README.md)
+2. [React SPA](./demo/react-spa-demo/README.md)
+3. [SSR application](./demo/ssr-express-demo/README.md)
 
 
 ## License
 
 [MIT License](./LICENSE)
-
