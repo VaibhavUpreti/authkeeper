@@ -55,7 +55,7 @@
         redirect_uri: 'http://localhost:5500/demo/browser-spa/home.html',
         authorization_url: 'https://dev-k6ckdaso3ygmzm7u.us.auth0.com/authorize',
         token_url: 'https://dev-k6ckdaso3ygmzm7u.us.auth0.com/oauth/token',
-        scope: 'openid profile',
+        scope: 'openid profile offline_access',
     };
    
     var oauthClient = new authkeeper.OAuthClient(config);
@@ -67,9 +67,9 @@
      window.onload = function() {
         oauthClient.handleCallback();
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const code = urlParams.get("code");
-           oauthClient.exchangeAuthCodeForToken(code);
+       // const urlParams = new URLSearchParams(window.location.search);
+       // const code = urlParams.get("code");
+         //  oauthClient.exchangeAuthCodeForToken(code);
     };
 
     // if (window.location.search.includes("code")) {

@@ -14,12 +14,12 @@
 [![CI](https://github.com/VaibhavUpreti/authkeeper/blob/main/.github/workflows/nodejs.yml/badge.svg)](https://github.com/VaibhavUpreti/authkeeper/blob/main/.github/workflows/nodejs.yml/badge.svg)
 [![Dependabot](https://img.shields.io/badge/dependabot-enabled-success.svg)](https://dependabot.com)
 
-authkeeper is a lightweight JavaScript library for implementing OAuth 2.0 clients in web, desktop, and mobile applications. 
+authkeeper is a lightweight JavaScript ES module for implementing OAuth 2.0 clients in web, desktop, and mobile applications. 
 
 It supports the following [grant types](https://oauth.net/2/grant-types/) out of the box
 
 - [Authorization code](https://oauth.net/2/grant-types/authorization-code/) - SSR apps
-- [PKCE](https://oauth.net/2/pkce/) - browser based, native apps, mobile apps
+- [PKCE](https://oauth.net/2/pkce/) - browser based, mobile apps
 - [refresh tokens](https://oauth.net/2/grant-types/refresh-token/)
 
 Supported features:
@@ -28,9 +28,9 @@ Supported features:
   - [Authorization Code Flow](https://datatracker.ietf.org/doc/html/rfc6749#section-4.1)
   - [Access Token Scopes](https://datatracker.ietf.org/doc/html/rfc6749#section-3.3)
   - [Refresh token](https://datatracker.ietf.org/doc/html/rfc6749#section-1.5)
-  - [Implicit grant](https://datatracker.ietf.org/doc/html/rfc6749#section-4.2)
+  <!-- - [Implicit grant](https://datatracker.ietf.org/doc/html/rfc6749#section-4.2)
   <!-- - [Resource Owner Password Credentials](https://datatracker.ietf.org/doc/html/rfc6749#section-4.3) -->
-  - [Client Credentials](https://datatracker.ietf.org/doc/html/rfc6749#section-4.4)
+  <!-- - [Client Credentials](https://datatracker.ietf.org/doc/html/rfc6749#section-4.4) --> -->
 <!-- - [OAuth 2.0 Token Revocation](https://datatracker.ietf.org/doc/html/rfc7009)
 - [OAuth 2.0 Token Introspection](https://datatracker.ietf.org/doc/html/rfc7662) -->
 <!-- - [OAuth 2.0 Threat Model and Security Considerations](https://datatracker.ietf.org/doc/html/rfc6819)

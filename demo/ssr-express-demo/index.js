@@ -9,6 +9,7 @@ const { OAuthClient } = authkeeper;  // Destructure OAuthClient
 
 const app = express();
 
+
 // OAuth Configuration using process.env
 const oauthConfig = {
   client_id: process.env.CLIENT_ID,
@@ -21,6 +22,7 @@ const oauthConfig = {
 
 // Initialize OAuthClient with configuration
 const oauthClient = new OAuthClient(oauthConfig);
+
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
