@@ -1,6 +1,6 @@
 {
   "name": "authkeeper",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "description": "A lightweight javascript wrapper for OAuth 2.0 protocol",
   "main": "lib/index.js",
   "type": "module",
