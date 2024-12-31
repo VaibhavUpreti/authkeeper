@@ -14,7 +14,9 @@
 [![CI](https://github.com/VaibhavUpreti/authkeeper/actions/workflows/nodejs.yml/badge.svg)](https://github.com/VaibhavUpreti/authkeeper/actions/workflows/nodejs.yml)
 [![Dependabot](https://img.shields.io/badge/dependabot-enabled-success.svg)](https://dependabot.com)
 
-authkeeper is a lightweight JavaScript ES6 module(51.7 kB) for implementing OAuth 2.0 clients in web, desktop, and mobile applications. 
+authkeeper is a lightweight JavaScript ES6 module (51.7 kB) for implementing OAuth 2.0 clients in web, desktop, and mobile applications. authkeeper is designed to work seamlessly in both **browser-based** and **server-side (Node.js)** environments. 
+
+It is inspired by the Doorkeeper gem in Ruby, which is widely used for OAuth 2.0 authorization in Ruby on Rails applications. authkeeper provides an easy-to-use API for OAuth 2.0 authentication flows.
 
 Supported features:
 
@@ -22,14 +24,17 @@ Supported features:
   - [Authorization Code Flow](https://datatracker.ietf.org/doc/html/rfc6749#section-4.1)
   - [Access Token Scopes](https://datatracker.ietf.org/doc/html/rfc6749#section-3.3)
   - [Refresh token](https://datatracker.ietf.org/doc/html/rfc6749#section-1.5)
+  - [OAuth 2.0 for Native Apps](https://datatracker.ietf.org/doc/html/rfc8252)
+  - [Proof Key for Code Exchange by OAuth Public Clients](https://datatracker.ietf.org/doc/html/rfc7636)
+
   <!-- - [Implicit grant](https://datatracker.ietf.org/doc/html/rfc6749#section-4.2)
   <!-- - [Resource Owner Password Credentials](https://datatracker.ietf.org/doc/html/rfc6749#section-4.3) -->
   <!-- - [Client Credentials](https://datatracker.ietf.org/doc/html/rfc6749#section-4.4) -->
 <!-- - [OAuth 2.0 Token Revocation](https://datatracker.ietf.org/doc/html/rfc7009)
 - [OAuth 2.0 Token Introspection](https://datatracker.ietf.org/doc/html/rfc7662) -->
 <!-- - [OAuth 2.0 Threat Model and Security Considerations](https://datatracker.ietf.org/doc/html/rfc6819)
-- [OAuth 2.0 for Native Apps](https://datatracker.ietf.org/doc/html/rfc8252)
-- [Proof Key for Code Exchange by OAuth Public Clients](https://datatracker.ietf.org/doc/html/rfc7636) -->
+
+ -->
 
 ## Usage
 
@@ -145,7 +150,7 @@ const userData = await oauthClient.getUserInfo(accessToken);
 ```
 
 
-## Grant types
+## Supported OAuth Grant types
 
 For more information look [GRANTS.md](./GRANTS.md)
 
@@ -155,7 +160,7 @@ These applications show how authkeeper works and how to integrate with it. Start
 
 
 1. [SSR application](./demo/ssr-express-demo/README.md)
-2. [React SPA](./demo/react-spa-demo/README.md) https://authkeeper-spa.vaibhavupreti.me/ 
+2. [React SPA](./demo/react-spa-demo/README.md) -  https://authkeeper-spa.vaibhavupreti.me/ 
 3. [Native Mobile Apps/ browser based spa](./demo/browser-spa/README.md)
 
 ## License

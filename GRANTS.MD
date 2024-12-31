@@ -10,7 +10,9 @@ It supports the following [grant types](https://oauth.net/2/grant-types/) out of
 
 ### Authorization Code Flow
 
+
 ### Authorization Code Flow with PKCE
+
 
 
 ### Refresh Token
