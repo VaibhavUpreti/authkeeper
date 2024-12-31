@@ -11,7 +11,7 @@
 # authkeeper — easy to use OAuth 2 JavaScript Client.
 
 [![npm version](https://badge.fury.io/js/authkeeper.svg)](https://badge.fury.io/js/authkeeper)
-[![CI](https://github.com/VaibhavUpreti/authkeeper/blob/main/.github/workflows/nodejs.yml/badge.svg)](https://github.com/VaibhavUpreti/authkeeper/blob/main/.github/workflows/nodejs.yml/badge.svg)
+[![CI](https://github.com/VaibhavUpreti/authkeeper/actions/workflows/nodejs.yml/badge.svg)](https://github.com/VaibhavUpreti/authkeeper/actions/workflows/nodejs.yml)
 [![Dependabot](https://img.shields.io/badge/dependabot-enabled-success.svg)](https://dependabot.com)
 
 authkeeper is a lightweight JavaScript ES module for implementing OAuth 2.0 clients in web, desktop, and mobile applications. 
@@ -71,74 +71,83 @@ From CDN
 
 ```
 
-
-
-```javascript
-import { OAuthClient, startAuthFlow, handleCallback, refreshToken } from 'authkeeper';
-```
-
-Choose appropriate client configuration
-
-```javascript
-const client = new OAuthClient({
-  client_id: 'your-client-id',
-  client_secret: 'your-client-secret',
-  redirect_uri: 'https://your-redirect-uri.com/callback',
-  authorization_url: 'https://oauth-provider.com/auth',
-  token_url: 'https://oauth-provider.com/token',
-  scope: 'openid profile email',
-});
-```
-
-
 ### Using with SSR applications
 
-Using authkeeper with express, importing the required functions
+Using authkeeper with express and SSR node applications(react, vue, nextjs, ... ), importing the required functions
+
+Import `authkeeper` and set up your OAuth configuration:
 
 ```javascript
-const express = require('express');
-const cookieParser = require('cookie-parser');
-const { OAuthClient, startAuthFlow, handleCallback, refreshToken } = require('authkeeper');
+import * as authkeeper from 'authkeeper';
+const { OAuthClient } = authkeeper;
 
+const oauthConfig = {
+  client_id: process.env.CLIENT_ID,
+  client_secret: process.env.CLIENT_SECRET_KEY,
+  redirect_uri: process.env.REDIRECT_URI,
+  authorization_url: process.env.AUTHORIZATION_URL,
+  token_url: process.env.TOKEN_URL,
+  scope: process.env.SCOPE,
+};
+
+const oauthClient = new OAuthClient(oauthConfig);
 ```
 
+**Building Login URI**
+
+Generate the login URL to redirect users for OAuth authorization:
+
 ```javascript
+const authUrl = await oauthClient.startAuthFlow(oauthConfig);
+```
 
-// Route to start the OAuth flow
-app.get('/authorize', (req, res) => {
-  const authUrl = startAuthFlow(client);
-  res.redirect(authUrl); // Redirect to OAuth provider's authorization URL
-});
+example
 
-// Callback route to handle OAuth response and store tokens in cookies
-app.get('/callback', async (req, res) => {
-  const tokenResponse = await handleCallback(client, req.query);
-  res.cookie('access_token', tokenResponse.access_token, {
-    httpOnly: true,
-    secure: true, // Ensure secure flag in production
-  });
-  res.cookie('refresh_token', tokenResponse.refresh_token, {
-    httpOnly: true,
-    secure: true,
-  });
-  res.send('OAuth2 Flow completed successfully!');
-});
-
-// Example route that requires authentication
-app.get('/protected', (req, res) => {
-  const accessToken = req.cookies.access_token;
-  if (!accessToken) {
-    return res.status(401).send('Unauthorized');
+```javascript
+app.get('/authorize', async (req, res) => {
+  try {
+    const authUrl = await oauthClient.startAuthFlow(oauthConfig);
+    res.redirect(authUrl);
+  } catch (error) {
+    console.error('Error starting auth flow:', error);
+    res.status(500).send('Error starting auth flow');
   }
-  // Use accessToken to call protected APIs or services
-  res.send('Protected Content');
 });
-
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
-
 ```
+
+
+**Get Auth Token, ID Token, Refresh Token**
+
+Exchange the authorization code for tokens
+
+```javascript
+// Returns token depending upon the scope provided in config
+const tokenData = await oauthClient.exchangeAuthCodeForToken(code);
+```
+
+
+**Refresh Token**
+
+Use the refresh token to get a new access token
+
+```javascript
+// Already existing Refresh Token set in browser cookie after login
+const refreshToken = req.cookies.refresh_token;
+// Refreshes the refresh token and sets it in the browser as a HTTP only cookie
+const tokenData = await oauthClient.refreshAccessToken(refreshToken);
+```
+
+
+**Get User Data**
+
+Retrieve user information based on the fields in your OAuth scope
+
+```javascript
+// Returns userData in json provided the fields present in the scope of configuration
+const accessToken = req.cookies.access_token;
+const userData = await oauthClient.getUserInfo(accessToken);
+```
+
 
 
 
