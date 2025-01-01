@@ -226,12 +226,11 @@ app.get("/user", async (req, res) => {
       return res.status(401).json({ message: "Access token not found. Please authenticate again." });
     }
 
-    // Fetch user information using the access token
     const userData = await oauthClient.getUserInfo(accessToken);
 
     res.status(200).json({
       message: "User information retrieved successfully.",
-      user: userData, // Assuming `getUserInfo` already returns a parsed object
+      user: userData,
     });
   } catch (error) {
     console.error("Error fetching user information:", error);

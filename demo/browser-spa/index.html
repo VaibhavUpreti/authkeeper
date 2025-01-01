@@ -61,15 +61,19 @@
     var oauthClient = new authkeeper.OAuthClient(config);
 
     document.getElementById("start").addEventListener("click", function() {
-        oauthClient.startAuthFlow();
+        oauthClient.startAuthFlow().then(url => {
+         console.log(url);
+         window.location=url;
+        });
     });
+
+    async function getAuthUrl() {
+        const url = await oauthClient.startAuthFlow();
+        console.log(url);
+    }
 
      window.onload = function() {
         oauthClient.handleCallback();
-
-       // const urlParams = new URLSearchParams(window.location.search);
-       // const code = urlParams.get("code");
-         //  oauthClient.exchangeAuthCodeForToken(code);
     };
 
     // if (window.location.search.includes("code")) {
