@@ -70,7 +70,7 @@ npm install authkeeper
         const url = await oauthClient.startAuthFlow();
         console.log(url);
     }
-    
+
     // After the user is redirected back, call handleCallback
     window.onload = function() {
         oauthClient.handleCallback();
@@ -174,3 +174,8 @@ These applications show how authkeeper works and how to integrate with it. Start
 ## License
 
 [MIT License](./LICENSE)
+
+## Upcoming
+
+- Add API documentation with detailed method descriptions.
+- Add unit tests for various environments (browser, mobile, server).

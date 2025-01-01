@@ -7,16 +7,6 @@ It supports the following [grant types](https://oauth.net/2/grant-types/) out of
 - [refresh tokens](https://oauth.net/2/grant-types/refresh-token/)
 
 
-
-### Authorization Code Flow
-
-
-### Authorization Code Flow with PKCE
-
-
-
-### Refresh Token
-
 **Important:** Do not refresh tokens unless you have implemented a refresh token rotation mechanism.
 
 ### Keeping Refresh Tokens Secure
