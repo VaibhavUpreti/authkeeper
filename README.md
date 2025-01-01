@@ -58,10 +58,19 @@ npm install authkeeper
     };
 
     var oauthClient = new authkeeper.OAuthClient(config);
+    
     // To start the auth flow
     document.getElementById("start").addEventListener("click", function() {
-      oauthClient.startAuthFlow();
+        oauthClient.startAuthFlow().then(url => {
+         window.location=url;
+        });
     });
+
+    async function getAuthUrl() {
+        const url = await oauthClient.startAuthFlow();
+        console.log(url);
+    }
+    
     // After the user is redirected back, call handleCallback
     window.onload = function() {
         oauthClient.handleCallback();
